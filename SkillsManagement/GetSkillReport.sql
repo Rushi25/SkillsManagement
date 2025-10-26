@@ -1,4 +1,5 @@
 ﻿CREATE PROCEDURE GetSkillReport
+    @CustomerId INT
 AS
 BEGIN
     SELECT
@@ -8,7 +9,9 @@ BEGIN
         MAX(Rating) AS MaxRating,
         AVG(CAST(Rating AS FLOAT)) AS AvgRating
     FROM
-        EmployeeSkill
+        EmployeeSkills
+    WHERE
+        CustomerId = @CustomerId
     GROUP BY
         SkillName
 END
